@@ -37,7 +37,7 @@ import java.util.Objects;
 
 import static store.ojuara.produtoapi.shared.message.MessageSourceKeys.*;
 
-//@RestControllerAdvice
+@RestControllerAdvice
 public class ApiExceptionHandler {
 
     @Autowired

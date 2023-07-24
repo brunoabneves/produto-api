@@ -21,6 +21,6 @@ public class MessageSourceKeys {
     public static final String DATAS_INICIO_FIM_INCORRETO = "{key.data.inicio-fim.incorreto}";
 
     // Produto
-    public static final String PRODUTO_INEXISTENTE = "{key.produto.inexistente-ou-inativo}";
-    public static final String PRODUTO_INVALIDO = "{key.produto.invalido}";
+    public static final String PRODUTO_INEXISTENTE = "{key.chuteira.inexistente-ou-inativo}";
+    public static final String PRODUTO_INVALIDO = "{key.chuteira.invalido}";
 }
