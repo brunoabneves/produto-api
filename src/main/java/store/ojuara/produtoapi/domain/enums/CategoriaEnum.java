@@ -5,11 +5,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TipoChuteiraEnum {
+public enum CategoriaEnum {
 
-    FUTEBOL_CAMPO("Futebol de campo"),
-    FUTSAL("Futsal"),
-    SOCIETY("Society");
+    ACESSORIOS("Acessorios"),
+    CAMISAS("Camisas"),
+    CHUTEIRAS("Chuteiras"),
+    TENIS("Tênis");
 
     private final String descricao;
 }

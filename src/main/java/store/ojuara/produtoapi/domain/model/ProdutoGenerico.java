@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import store.ojuara.produtoapi.domain.enums.CategoriaEnum;
+import store.ojuara.produtoapi.domain.enums.GeneroEnum;
 import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 
@@ -39,7 +41,6 @@ public class ProdutoGenerico implements Serializable {
     private LocalDate updatedAt;
 
     private String updateReason;
-
     private String nome;
     private String descricao;
     private String marca;
@@ -51,15 +52,11 @@ public class ProdutoGenerico implements Serializable {
     private String imagemUrl;
 
     @Enumerated(EnumType.STRING)
+    private CategoriaEnum categoria;
+    @Enumerated(EnumType.STRING)
     private SetorEnum setor;
     @Enumerated(EnumType.STRING)
+    private GeneroEnum genero;
+    @Enumerated(EnumType.STRING)
     private SituacaoProdutoEnum situacaoProdutoEnum;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "subcategoria_id")
-    private Subcategoria subcategoria;
 }

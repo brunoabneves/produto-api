@@ -1,15 +1,17 @@
 package store.ojuara.produtoapi.domain.enums;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TipoChuteiraEnum {
+public enum TitpoTravaChuteiraEnum {
 
-    FUTEBOL_CAMPO("Futebol de campo"),
-    FUTSAL("Futsal"),
-    SOCIETY("Society");
+    FIXA("Fixa"),
+    MISTA("Mista"),
+    REMOVIVEL("Removível"),
+    SEM_TRAVAS("Sem travas");
 
     private final String descricao;
 }
