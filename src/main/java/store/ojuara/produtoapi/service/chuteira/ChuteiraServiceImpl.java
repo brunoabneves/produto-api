@@ -27,6 +27,7 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     private final ChuteiraMapper mapper;
     private final ChuteiraValidator validator;
     private final ModelMapper modelMapper;
+    private final ChuteiraSpecification specification;
 
     @Override
     public ChuteiraDTO visualizar(Long id) {
@@ -49,7 +50,8 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     public ChuteiraDTO cadastrar(ChuteiraForm form) {
         validator.validarCadastro(form);
         var chuteira = mapper.toEntity(form);
-        chuteira.setCategoria(CategoriaEnum.CHUTEIRAS);
+        chuteira.setCategoria(CategoriaEnum.CALCADOS);
+        chuteira.setModalidade(ModalidadeEnum.FUTEBOL);
         chuteira.setSituacaoProdutoEnum(SituacaoProdutoEnum.CADASTRADO);
 
         return mapper.toDto(repository.save(chuteira));
@@ -76,8 +78,8 @@ public class ChuteiraServiceImpl implements ChuteiraService {
                                                               Integer pontuacao, String cor, SetorEnum setor, TipoChuteiraEnum tipoChuteira,
                                                               String material, TitpoTravaChuteiraEnum tipoTrava, Pageable paginacao) {
 
-        Specification<Chuteira> spec = ChuteiraSpecification.filtrar(nome, descricao, fabricante,
-                situacao, valorInicial, valorFinal, pontuacao, cor, setor, tipoChuteira, material, tipoTrava);
+        Specification<Chuteira> spec = specification.filtrar(nome, descricao, fabricante,
+                situacao, valorInicial, valorFinal, pontuacao, cor, setor, material, tipoChuteira, tipoTrava);
         Page<Chuteira> chuteiraPage = repository.findAll(spec, paginacao);
 
         return mapper.toPage(chuteiraPage, paginacao);

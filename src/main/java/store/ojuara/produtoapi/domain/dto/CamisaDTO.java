@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChuteiraDTO {
+public class CamisaDTO {
 
     private Long id;
     private UUID uuid;
@@ -37,14 +37,14 @@ public class ChuteiraDTO {
     @Enumerated(EnumType.STRING)
     private SituacaoProdutoEnum situacaoProdutoEnum;
     @Enumerated(EnumType.STRING)
-    private ModalidadeEnum modalidade;
-
-    private Integer pontuacao;
+    private TamanhoCamisaEnum tamanhoCamisa;
+    private Integer alturaEmCm;
+    private Integer larguraEmCm;
+    private boolean isCamisaDeTime;
+    private boolean permitePersonalizacao;
+    private String time;
     @Enumerated(EnumType.STRING)
-    private TipoChuteiraEnum tipo;
-    private String material;
-    private String solado;
-    private String cabedal;
-    private String peso;
-    private String medida;
+    private TipoGolaEnum tipoGola;
+    @Enumerated(EnumType.STRING)
+    private TipoMangaEnum tipoManga;
 }

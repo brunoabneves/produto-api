@@ -49,6 +49,7 @@ public class ProdutoGenerico implements Serializable {
     private BigDecimal precoVenda;
     private Integer quantidade;
     private String cor;
+    private String material;
     private String imagemUrl;
 
     @Enumerated(EnumType.STRING)

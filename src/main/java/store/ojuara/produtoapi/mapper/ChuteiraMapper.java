@@ -18,7 +18,6 @@ import java.util.stream.Stream;
 @Component
 public class ChuteiraMapper {
 
-
     private final ModelMapper mapper;
 
     public ChuteiraMapper() {

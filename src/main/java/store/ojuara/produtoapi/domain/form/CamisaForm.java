@@ -3,9 +3,7 @@ package store.ojuara.produtoapi.domain.form;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import store.ojuara.produtoapi.domain.enums.CategoriaEnum;
-import store.ojuara.produtoapi.domain.enums.GeneroEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
+import store.ojuara.produtoapi.domain.enums.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,7 +15,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoForm {
+public class CamisaForm {
 
     @NotBlank(message = "O nome do chuteira é obrigatório.")
     private String nome;
@@ -51,4 +49,30 @@ public class ProdutoForm {
 
     @Enumerated(EnumType.STRING)
     private GeneroEnum genero;
+
+    @NotNull(message = "O tamanho da camisa é obrigatório")
+    @Enumerated(EnumType.STRING)
+    private TamanhoCamisaEnum tamanhoCamisa;
+
+    @NotNull
+    private Integer alturaEmCm;
+
+    @NotNull
+    private Integer larguraEmCm;
+
+    @NotNull
+    private boolean isCamisaDeTime;
+
+    @NotNull
+    private boolean permitePersonalizacao;
+
+    private String time;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoGolaEnum tipoGola;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TipoMangaEnum tipoManga;
 }

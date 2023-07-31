@@ -7,10 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CategoriaEnum {
 
-    ACESSORIOS("Acessorios"),
-    CAMISAS("Camisas"),
-    CHUTEIRAS("Chuteiras"),
-    TENIS("Tênis");
+    ACESSORIOS("Acessórios"),
+    ROUPAS("Roupas"),
+    CALCADOS("Calçados");
 
     private final String descricao;
 }
