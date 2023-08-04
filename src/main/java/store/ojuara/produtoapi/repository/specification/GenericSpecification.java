@@ -1,6 +1,7 @@
 package store.ojuara.produtoapi.repository.specification;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.model.ProdutoGenerico;
@@ -8,6 +9,7 @@ import store.ojuara.produtoapi.domain.model.ProdutoGenerico;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Component
 public class GenericSpecification<T extends ProdutoGenerico> {
 
     public Specification<T> filtrar(String nome, String descricao, String fabricante, SituacaoProdutoEnum situacao,
@@ -83,12 +85,12 @@ public class GenericSpecification<T extends ProdutoGenerico> {
 
     public Specification<T> filterBySituacao(SituacaoProdutoEnum situacao){
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("situacaoProdutoEnum"), situacao);
+                criteriaBuilder.equal(root.get("situacao"), situacao);
     }
 
     public Specification<T> filterBySetor(SetorEnum setor){
         return (root, criteriaQuery, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("setorEnum"), setor);
+                criteriaBuilder.equal(root.get("setor"), setor);
     }
 
     public Specification<T> filterByMaterial(String material){

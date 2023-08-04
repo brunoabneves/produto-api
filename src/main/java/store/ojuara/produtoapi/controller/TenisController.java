@@ -30,20 +30,20 @@ public class TenisController {
 
     private TenisService service;
 
-    @Operation(summary = "Visualizar uma tenis.", description = "Busca uma tenis pelo seu UUID.")
+    @Operation(summary = "Visualizar uma tênis.", description = "Busca uma tênis pelo seu UUID.")
     @GetMapping("/{uuid}")
     public ResponseEntity<TenisDTO> visualizar(@PathVariable UUID uuid) {
         return ResponseEntity.ok(service.visualizarPorUuid(uuid));
     }
 
-    @Operation(summary = "Lista todas as teniss.", description = "Retorna uma lista paginada com todas as teniss.")
+    @Operation(summary = "Lista todas as tênis.", description = "Retorna uma lista paginada com todas as tênis.")
     @GetMapping("/listar-todos")
     public ResponseEntity<Page<TenisDTO>> listarTodos(
             @ParameterObject @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao) {
         return ResponseEntity.ok(service.listar(paginacao));
     }
 
-    @Operation(summary = "Filtrar teniss.", description = "Retorna uma lista de teniss de acordo com os filtros especificados.")
+    @Operation(summary = "Filtrar tênis.", description = "Retorna uma lista de tênis de acordo com os filtros especificados.")
     @GetMapping("/buscar")
     public ResponseEntity<Page<TenisDTO>> buscarComFiltros(
             @RequestParam(value = "nome", required = false) String nome,

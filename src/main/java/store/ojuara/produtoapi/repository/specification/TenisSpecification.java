@@ -2,6 +2,7 @@ package store.ojuara.produtoapi.repository.specification;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
 import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
@@ -10,6 +11,7 @@ import store.ojuara.produtoapi.domain.model.Tenis;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Component
 @RequiredArgsConstructor
 public class TenisSpecification {
 
