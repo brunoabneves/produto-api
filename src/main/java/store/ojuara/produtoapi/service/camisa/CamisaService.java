@@ -7,6 +7,7 @@ import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.enums.TamanhoCamisaEnum;
 import store.ojuara.produtoapi.domain.form.CamisaForm;
+import store.ojuara.produtoapi.domain.form.CamisaUpdateForm;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -17,7 +18,7 @@ public interface CamisaService {
     CamisaDTO visualizarPorUuid(UUID uuid);
     Page<CamisaDTO> listar(Pageable paginacao);
     CamisaDTO cadastrar(CamisaForm form);
-    CamisaDTO atualizar(Long id, CamisaForm form);
+    public CamisaDTO atualizar(Long id, CamisaUpdateForm updateForm);
     void excluir(Long id);
     Page<CamisaDTO> pesquisarComFiltrosSpecification(String nome, String descricao, String fabricante, SituacaoProdutoEnum situacao,
                                                      BigDecimal valorInicial, BigDecimal valorFinal, String cor,

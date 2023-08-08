@@ -16,6 +16,7 @@ import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.enums.TamanhoCamisaEnum;
 import store.ojuara.produtoapi.domain.form.CamisaForm;
+import store.ojuara.produtoapi.domain.form.CamisaUpdateForm;
 import store.ojuara.produtoapi.service.camisa.CamisaService;
 
 import javax.validation.Valid;
@@ -75,7 +76,7 @@ public class CamisaController {
 
     @Operation(summary = "Atualizar camisa por ID.")
     @PutMapping("/{id}")
-    public ResponseEntity<CamisaDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody CamisaForm form) {
+    public ResponseEntity<CamisaDTO> atualizar(@PathVariable Long id, @Valid @RequestBody CamisaUpdateForm form) {
         return ResponseEntity.ok(service.atualizar(id, form));
     }
 

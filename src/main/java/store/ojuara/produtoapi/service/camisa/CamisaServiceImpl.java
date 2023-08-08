@@ -1,7 +1,6 @@
 package store.ojuara.produtoapi.service.camisa;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -13,6 +12,7 @@ import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.enums.TamanhoCamisaEnum;
 import store.ojuara.produtoapi.domain.form.CamisaForm;
+import store.ojuara.produtoapi.domain.form.CamisaUpdateForm;
 import store.ojuara.produtoapi.domain.model.Camisa;
 import store.ojuara.produtoapi.mapper.CamisaMapper;
 import store.ojuara.produtoapi.repository.CamisaRepository;
@@ -29,7 +29,6 @@ public class CamisaServiceImpl implements CamisaService{
     private final CamisaMapper mapper;
     private final CamisaValidator validator;
     private final CamisaRepository repository;
-    private final ModelMapper modelMapper;
     private final CamisaSpecification specification;
 
     @Override
@@ -45,14 +44,14 @@ public class CamisaServiceImpl implements CamisaService{
     @Override
     @Transactional(readOnly = true)
     public Page<CamisaDTO> listar(Pageable paginacao) {
-        var pageChuteira = repository.findAll(paginacao);
-        return mapper.toPage(pageChuteira, paginacao);
+        var pageCamisa = repository.findAll(paginacao);
+        return pageCamisa.map(this::toDTO);
     }
 
     @Override
     public CamisaDTO cadastrar(CamisaForm form) {
         validator.validarCadastro(form);
-        var camisa = mapper.toEntity(form);
+        var camisa = mapper.toModel(form);
         camisa.setCategoria(CategoriaEnum.ROUPAS);
         camisa.setSituacaoProdutoEnum(SituacaoProdutoEnum.CADASTRADO);
 
@@ -60,9 +59,9 @@ public class CamisaServiceImpl implements CamisaService{
     }
 
     @Override
-    public CamisaDTO atualizar(Long id, CamisaForm form) {
+    public CamisaDTO atualizar(Long id, CamisaUpdateForm updateForm) {
         var camisa = validator.verificarExistencia(id);
-        modelMapper.map(form, camisa);
+        mapper.updateCamisaFromCamisaUpdateForm(updateForm, camisa);
 
         return mapper.toDto(repository.save(camisa));
     }
@@ -82,8 +81,12 @@ public class CamisaServiceImpl implements CamisaService{
 
         Specification<Camisa> spec = specification.filtrar(nome, descricao, fabricante, situacao, valorInicial, valorFinal,
                 cor, setor, material, tamanhoCamisa, isCamisaDeTime, time);
-        Page<Camisa> chuteiraPage = repository.findAll(spec, paginacao);
+        Page<Camisa> pageCamisa = repository.findAll(spec, paginacao);
 
-        return mapper.toPage(chuteiraPage, paginacao);
+        return pageCamisa.map(this::toDTO);
+    }
+
+    private CamisaDTO toDTO(Camisa camisa) {
+        return mapper.toDto(camisa);
     }
 }

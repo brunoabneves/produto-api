@@ -1,8 +1,6 @@
 package store.ojuara.produtoapi.service.tenis;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -14,6 +12,7 @@ import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
 import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.form.TenisForm;
+import store.ojuara.produtoapi.domain.form.TenisUpdateForm;
 import store.ojuara.produtoapi.domain.model.Tenis;
 import store.ojuara.produtoapi.mapper.TenisMapper;
 import store.ojuara.produtoapi.repository.TenisRepository;
@@ -30,7 +29,6 @@ public class TenisServiceImpl implements TenisService{
     private final TenisRepository repository;
     private final TenisMapper mapper;
     private final TenisValidator validator;
-    private final ModelMapper modelMapper;
     private final TenisSpecification specification;
 
     @Override
@@ -47,13 +45,13 @@ public class TenisServiceImpl implements TenisService{
     @Transactional(readOnly = true)
     public Page<TenisDTO> listar(Pageable paginacao) {
         var pageTenis = repository.findAll(paginacao);
-        return mapper.toPage(pageTenis, paginacao);
+        return pageTenis.map(this::toDTO);
     }
 
     @Override
     public TenisDTO cadastrar(TenisForm form) {
         validator.validarCadastro(form);
-        var tenis = mapper.toEntity(form);
+        var tenis = mapper.toModel(form);
         tenis.setCategoria(CategoriaEnum.CALCADOS);
         tenis.setSituacaoProdutoEnum(SituacaoProdutoEnum.CADASTRADO);
 
@@ -61,15 +59,9 @@ public class TenisServiceImpl implements TenisService{
     }
 
     @Override
-    public TenisDTO atualizar(Long id, TenisForm form) {
+    public TenisDTO atualizar(Long id, TenisUpdateForm form) {
         var tenis = validator.verificarExistencia(id);
-
-        TypeMap<TenisForm, Tenis> typeMap = modelMapper.getTypeMap(TenisForm.class, Tenis.class);
-        if (typeMap == null) {
-            typeMap = modelMapper.createTypeMap(TenisForm.class, Tenis.class);
-        }
-
-        modelMapper.map(form, tenis);
+        mapper.updateTenisFromTenisUpdateForm(form, tenis);
 
         return mapper.toDto(repository.save(tenis));
     }
@@ -88,8 +80,12 @@ public class TenisServiceImpl implements TenisService{
 
         Specification<Tenis> spec = specification.filtrar(nome, descricao, fabricante,
                 situacao, valorInicial, valorFinal, pontuacao, cor, setor, material, modalidade);
-        Page<Tenis> tenisPage = repository.findAll(spec, paginacao);
+        Page<Tenis> pageTenis = repository.findAll(spec, paginacao);
 
-        return mapper.toPage(tenisPage, paginacao);
+        return pageTenis.map(this::toDTO);
+    }
+
+    private TenisDTO toDTO(Tenis tenis) {
+        return mapper.toDto(tenis);
     }
 }

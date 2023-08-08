@@ -8,7 +8,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor

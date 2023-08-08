@@ -1,57 +1,26 @@
 package store.ojuara.produtoapi.mapper;
 
-import org.modelmapper.Conditions;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
+import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import store.ojuara.produtoapi.domain.dto.CamisaDTO;
 import store.ojuara.produtoapi.domain.form.CamisaForm;
+import store.ojuara.produtoapi.domain.form.CamisaUpdateForm;
 import store.ojuara.produtoapi.domain.model.Camisa;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Set;
 
-@Component
-public class CamisaMapper {
+@Mapper(componentModel = "spring")
+public interface CamisaMapper extends EntityMapper<CamisaDTO, Camisa, CamisaForm> {
 
-    private final ModelMapper mapper;
-
-    public CamisaMapper() {
-        mapper = new ModelMapper();
-        mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
-        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-    }
-
-    public CamisaDTO toDto(Camisa camisa) {
-        return mapper.map(camisa, CamisaDTO.class);
-    }
-
-    public Camisa toEntity(CamisaForm camisaForm) {
-        return mapper.map(camisaForm, Camisa.class);
-    }
-
-    public Camisa toEntity(Stream<Camisa> camisas) {
-        return mapper.map(camisas, Camisa.class);
-    }
-
-    public List<CamisaDTO> toListDTO(List<Camisa> camisas) {
-        return camisas.stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-    }
-
-    public Page<CamisaDTO> toPage(Page<Camisa> camisas, Pageable pageable) {
-        List<CamisaDTO> dtos = camisas.stream()
-                .map(entity -> mapper.map(entity, CamisaDTO.class))
-                .collect(Collectors.toList());
-
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), dtos.size());
-
-        return new PageImpl<>(dtos.subList(start, end), pageable, dtos.size());
-    }
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateCamisaFromCamisaUpdateForm(CamisaUpdateForm camisaUpdateForm, @MappingTarget Camisa camisa);
+    void updateCamisaFromForm(CamisaForm form, @MappingTarget Camisa entity);
+    CamisaForm toForm(Camisa entity);
+    Camisa toModel(CamisaForm form);
+    List<Camisa> toModel(List<CamisaForm> formList);
+    List<Camisa> toModel(Set<CamisaForm> formSet);
+    List<CamisaDTO> toDto(List<Camisa> entityList);
 }

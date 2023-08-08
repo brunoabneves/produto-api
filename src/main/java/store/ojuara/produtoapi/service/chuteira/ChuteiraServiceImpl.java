@@ -1,7 +1,6 @@
 package store.ojuara.produtoapi.service.chuteira;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -10,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import store.ojuara.produtoapi.domain.dto.ChuteiraDTO;
 import store.ojuara.produtoapi.domain.enums.*;
 import store.ojuara.produtoapi.domain.form.ChuteiraForm;
+import store.ojuara.produtoapi.domain.form.ChuteiraUpdateForm;
 import store.ojuara.produtoapi.domain.model.Chuteira;
 import store.ojuara.produtoapi.mapper.ChuteiraMapper;
 import store.ojuara.produtoapi.repository.ChuteiraRepository;
@@ -26,7 +26,6 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     private final ChuteiraRepository repository;
     private final ChuteiraMapper mapper;
     private final ChuteiraValidator validator;
-    private final ModelMapper modelMapper;
     private final ChuteiraSpecification specification;
 
     @Override
@@ -43,13 +42,13 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     @Transactional(readOnly = true)
     public Page<ChuteiraDTO> listar(Pageable paginacao) {
         var pageChuteira = repository.findAll(paginacao);
-        return mapper.toPage(pageChuteira, paginacao);
+        return pageChuteira.map(this::toDTO);
     }
 
     @Override
     public ChuteiraDTO cadastrar(ChuteiraForm form) {
         validator.validarCadastro(form);
-        var chuteira = mapper.toEntity(form);
+        var chuteira = mapper.toModel(form);
         chuteira.setCategoria(CategoriaEnum.CALCADOS);
         chuteira.setModalidade(ModalidadeEnum.FUTEBOL);
         chuteira.setSituacaoProdutoEnum(SituacaoProdutoEnum.CADASTRADO);
@@ -58,9 +57,9 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     }
 
     @Override
-    public ChuteiraDTO atualizar(Long id, ChuteiraForm form) {
+    public ChuteiraDTO atualizar(Long id, ChuteiraUpdateForm form) {
         var chuteira = validator.verificarExistencia(id);
-        modelMapper.map(form, chuteira);
+        mapper.updateChuteiraFromChuteiraUpdateForm(form, chuteira);
 
         return mapper.toDto(repository.save(chuteira));
     }
@@ -82,6 +81,10 @@ public class ChuteiraServiceImpl implements ChuteiraService {
                 situacao, valorInicial, valorFinal, pontuacao, cor, setor, material, tipoChuteira, tipoTrava);
         Page<Chuteira> chuteiraPage = repository.findAll(spec, paginacao);
 
-        return mapper.toPage(chuteiraPage, paginacao);
+        return chuteiraPage.map(this::toDTO);
+    }
+
+    private ChuteiraDTO toDTO(Chuteira chuteira) {
+        return mapper.toDto(chuteira);
     }
 }

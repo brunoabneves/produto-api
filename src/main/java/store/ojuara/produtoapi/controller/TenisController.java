@@ -16,6 +16,7 @@ import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
 import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.form.TenisForm;
+import store.ojuara.produtoapi.domain.form.TenisUpdateForm;
 import store.ojuara.produtoapi.service.tenis.TenisService;
 
 import javax.validation.Valid;
@@ -30,13 +31,13 @@ public class TenisController {
 
     private TenisService service;
 
-    @Operation(summary = "Visualizar uma tênis.", description = "Busca uma tênis pelo seu UUID.")
+    @Operation(summary = "Visualizar um tênis.", description = "Busca um tênis pelo seu UUID.")
     @GetMapping("/{uuid}")
     public ResponseEntity<TenisDTO> visualizar(@PathVariable UUID uuid) {
         return ResponseEntity.ok(service.visualizarPorUuid(uuid));
     }
 
-    @Operation(summary = "Lista todas as tênis.", description = "Retorna uma lista paginada com todas as tênis.")
+    @Operation(summary = "Lista todos os tênis.", description = "Retorna uma lista paginada com todos os tênis.")
     @GetMapping("/listar-todos")
     public ResponseEntity<Page<TenisDTO>> listarTodos(
             @ParameterObject @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao) {
@@ -74,7 +75,7 @@ public class TenisController {
 
     @Operation(summary = "Atualizar tênis por ID.")
     @PutMapping("/{id}")
-    public ResponseEntity<TenisDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody TenisForm form) {
+    public ResponseEntity<TenisDTO> atualizar(@PathVariable Long id, @Valid @RequestBody TenisUpdateForm form) {
         return ResponseEntity.ok(service.atualizar(id, form));
     }
 

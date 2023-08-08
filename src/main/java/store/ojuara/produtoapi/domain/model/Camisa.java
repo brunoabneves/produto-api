@@ -10,7 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +20,7 @@ public class Camisa extends ProdutoGenerico{
     private TamanhoCamisaEnum tamanhoCamisa;
     private Integer alturaEmCm;
     private Integer larguraEmCm;
-    private boolean isCamisaDeTime;
+    private boolean camisaDeTime;
     private boolean permitePersonalizacao;
     private String time;
     @Enumerated(EnumType.STRING)

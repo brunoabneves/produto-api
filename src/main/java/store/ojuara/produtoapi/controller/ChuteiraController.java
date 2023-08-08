@@ -17,6 +17,7 @@ import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.enums.TipoChuteiraEnum;
 import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
 import store.ojuara.produtoapi.domain.form.ChuteiraForm;
+import store.ojuara.produtoapi.domain.form.ChuteiraUpdateForm;
 import store.ojuara.produtoapi.service.chuteira.ChuteiraService;
 
 import javax.validation.Valid;
@@ -76,7 +77,7 @@ public class ChuteiraController {
 
     @Operation(summary = "Atualizar chuteira por ID.")
     @PutMapping("/{id}")
-    public ResponseEntity<ChuteiraDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody ChuteiraForm form) {
+    public ResponseEntity<ChuteiraDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ChuteiraUpdateForm form) {
         return ResponseEntity.ok(service.atualizar(id, form));
     }
 
