@@ -8,6 +8,7 @@ import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
 import store.ojuara.produtoapi.domain.form.ChuteiraForm;
 import store.ojuara.produtoapi.domain.model.Chuteira;
 import store.ojuara.produtoapi.repository.ChuteiraRepository;
+import store.ojuara.produtoapi.service.ValidadorGenerico;
 import store.ojuara.produtoapi.shared.exception.RegraDeNegocioException;
 
 import javax.persistence.EntityNotFoundException;
@@ -18,23 +19,24 @@ import java.util.UUID;
 public class ChuteiraValidator {
 
         private final ChuteiraRepository repository;
+        private final ValidadorGenerico validadorGenerico;
 
     @Transactional(readOnly = true)
     public Chuteira verificarExistencia(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Nenhum chuteira encontrado para o id informado."));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Nenhuma chuteira encontrada para o id informado."));
     }
 
     @Transactional(readOnly = true)
     public Chuteira verificarExistencia(UUID uuid) {
-        return repository.findByUuid(uuid).orElseThrow(() -> new EntityNotFoundException("Nenhum chuteira encontrado para o uuid informado."));
+        return repository.findByUuid(uuid).orElseThrow(() -> new EntityNotFoundException("Nenhuma chuteira encontrada para o uuid informado."));
     }
 
-    /*TODO Adicionar validações neste método. Por hora, tem apenas uma validação.*/
     public void validarCadastro(ChuteiraForm form) {
-        validarTipoTrava(form);
+        validaTipoTrava(form);
+        validadorGenerico.validaPrecos(form.getPrecoFornecedor(), form.getPrecoVenda());
     }
     
-    private void validarTipoTrava(ChuteiraForm form) {
+    private void validaTipoTrava(ChuteiraForm form) {
         boolean isChuteiraComTrava = form.getTipo().equals(TipoChuteiraEnum.FUTEBOL_CAMPO);
         if(isChuteiraComTrava && form.getTipoTrava().equals(TitpoTravaChuteiraEnum.SEM_TRAVAS)){
             throw new RegraDeNegocioException("O tipo de trava de uma chuteira de campo, não pode ser do tipo: "+TitpoTravaChuteiraEnum.SEM_TRAVAS.getDescricao());

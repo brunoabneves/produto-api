@@ -11,14 +11,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import store.ojuara.produtoapi.domain.dto.ChuteiraDTO;
+import store.ojuara.produtoapi.domain.dto.TenisDTO;
+import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
 import store.ojuara.produtoapi.domain.enums.SetorEnum;
 import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
-import store.ojuara.produtoapi.domain.enums.TipoChuteiraEnum;
-import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
-import store.ojuara.produtoapi.domain.form.ChuteiraForm;
-import store.ojuara.produtoapi.domain.form.ChuteiraUpdateForm;
-import store.ojuara.produtoapi.service.chuteira.ChuteiraService;
+import store.ojuara.produtoapi.domain.form.TenisForm;
+import store.ojuara.produtoapi.domain.form.TenisUpdateForm;
+import store.ojuara.produtoapi.service.tenis.TenisService;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -26,28 +25,28 @@ import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/chuteiras")
+@RequestMapping("/tenis")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class ChuteiraController {
+public class TenisController {
 
-    private ChuteiraService service;
+    private TenisService service;
 
-    @Operation(summary = "Visualizar uma chuteira.", description = "Busca uma chuteira pelo seu UUID.")
+    @Operation(summary = "Visualizar um tênis.", description = "Busca um tênis pelo seu UUID.")
     @GetMapping("/{uuid}")
-    public ResponseEntity<ChuteiraDTO> visualizar(@PathVariable UUID uuid) {
+    public ResponseEntity<TenisDTO> visualizar(@PathVariable UUID uuid) {
         return ResponseEntity.ok(service.visualizarPorUuid(uuid));
     }
 
-    @Operation(summary = "Lista todas as chuteiras.", description = "Retorna uma lista paginada com todas as chuteiras.")
+    @Operation(summary = "Lista todos os tênis.", description = "Retorna uma lista paginada com todos os tênis.")
     @GetMapping("/listar-todos")
-    public ResponseEntity<Page<ChuteiraDTO>> listarTodos(
+    public ResponseEntity<Page<TenisDTO>> listarTodos(
             @ParameterObject @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao) {
         return ResponseEntity.ok(service.listar(paginacao));
     }
 
-    @Operation(summary = "Filtrar chuteiras.", description = "Retorna uma lista de chuteiras de acordo com os filtros especificados.")
+    @Operation(summary = "Filtrar tênis.", description = "Retorna uma lista de tênis de acordo com os filtros especificados.")
     @GetMapping("/buscar")
-    public ResponseEntity<Page<ChuteiraDTO>> buscarComFiltros(
+    public ResponseEntity<Page<TenisDTO>> buscarComFiltros(
             @RequestParam(value = "nome", required = false) String nome,
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "fabricante", required = false) String fabricante,
@@ -57,31 +56,30 @@ public class ChuteiraController {
             @RequestParam(value = "pontuacao", required = false) Integer pontuacao,
             @RequestParam(value = "cor", required = false) String cor,
             @RequestParam(value = "setor", required = false) SetorEnum setor,
-            @RequestParam(value = "tipoChuteira", required = false) TipoChuteiraEnum tipoChuteira,
             @RequestParam(value = "material", required = false) String material,
-            @RequestParam(value = "tipoTrava", required = false) TitpoTravaChuteiraEnum tipoTrava,
+            @RequestParam(value = "modalidade", required = false) ModalidadeEnum modalidade,
             @ParameterObject @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao) {
 
         return ResponseEntity.ok(service.pesquisarComFiltrosSpecification(nome, descricao, fabricante, situacao, valorInicial, valorFinal,
-                pontuacao, cor, setor,tipoChuteira, material, tipoTrava, paginacao));
+                pontuacao, cor, setor, material, modalidade, paginacao));
     }
 
-    @Operation(summary = "Cadastrar chuteira.")
+    @Operation(summary = "Cadastrar tênis.")
     @PostMapping("/cadastrar")
-    public ResponseEntity<ChuteiraDTO> cadastrar(@Valid @RequestBody ChuteiraForm form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<TenisDTO> cadastrar(@Valid @RequestBody TenisForm form, UriComponentsBuilder uriBuilder) {
 
         var dto = service.cadastrar(form);
-        URI uri = uriBuilder.path("/chuteiras/{uuid}").buildAndExpand(dto.getUuid()).toUri();
+        URI uri = uriBuilder.path("/tenis/{uuid}").buildAndExpand(dto.getUuid()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
 
-    @Operation(summary = "Atualizar chuteira por ID.")
+    @Operation(summary = "Atualizar tênis por ID.")
     @PutMapping("/{id}")
-    public ResponseEntity<ChuteiraDTO> atualizar(@PathVariable Long id, @Valid @RequestBody ChuteiraUpdateForm form) {
+    public ResponseEntity<TenisDTO> atualizar(@PathVariable Long id, @Valid @RequestBody TenisUpdateForm form) {
         return ResponseEntity.ok(service.atualizar(id, form));
     }
 
-    @Operation(summary = "Excluir chuteira por ID.")
+    @Operation(summary = "Excluir tênis por ID.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
         service.excluir(id);

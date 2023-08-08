@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import store.ojuara.produtoapi.domain.enums.CategoriaEnum;
-import store.ojuara.produtoapi.domain.enums.GeneroEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
+import store.ojuara.produtoapi.domain.enums.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,7 +15,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoDTO {
+public class TenisDTO {
 
     private Long id;
     private UUID uuid;
@@ -39,4 +36,12 @@ public class ProdutoDTO {
     private GeneroEnum genero;
     @Enumerated(EnumType.STRING)
     private SituacaoProdutoEnum situacaoProdutoEnum;
+    @Enumerated(EnumType.STRING)
+    private ModalidadeEnum modalidade;
+    private Integer pontuacao;
+    private String material;
+    private String solado;
+    private String palmilha;
+    private String peso;
+    private String medida;
 }

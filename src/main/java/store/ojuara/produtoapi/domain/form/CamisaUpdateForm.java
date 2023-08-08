@@ -1,50 +1,53 @@
-package store.ojuara.produtoapi.domain.dto;
+package store.ojuara.produtoapi.domain.form;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import store.ojuara.produtoapi.domain.enums.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChuteiraDTO {
+public class CamisaUpdateForm {
 
-    private Long id;
-    private UUID uuid;
     private String nome;
     private String descricao;
     private String marca;
     private String fornecedor;
+
+    @Min(1)
     private BigDecimal precoFornecedor;
+
+    @Min(1)
     private BigDecimal precoVenda;
-    private Integer quantidade;
+
+    private int quantidade;
     private String cor;
     private String imagemUrl;
-    @Enumerated(EnumType.STRING)
-    private CategoriaEnum categoria;
+
     @Enumerated(EnumType.STRING)
     private SetorEnum setor;
+
     @Enumerated(EnumType.STRING)
     private GeneroEnum genero;
-    @Enumerated(EnumType.STRING)
-    private SituacaoProdutoEnum situacaoProdutoEnum;
-    @Enumerated(EnumType.STRING)
-    private ModalidadeEnum modalidade;
 
-    private Integer pontuacao;
+    /** atributos exclusivos **/
     @Enumerated(EnumType.STRING)
-    private TipoChuteiraEnum tipo;
-    private String material;
-    private String solado;
-    private String cabedal;
-    private String peso;
-    private String medida;
+    private TamanhoCamisaEnum tamanhoCamisa;
+    private Integer alturaEmCm;
+    private Integer larguraEmCm;
+    private boolean camisaDeTime;
+    private boolean permitePersonalizacao;
+    private String time;
+
+    @Enumerated(EnumType.STRING)
+    private TipoGolaEnum tipoGola;
+
+    @Enumerated(EnumType.STRING)
+    private TipoMangaEnum tipoManga;
 }

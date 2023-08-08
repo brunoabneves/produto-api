@@ -3,52 +3,45 @@ package store.ojuara.produtoapi.domain.form;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import store.ojuara.produtoapi.domain.enums.CategoriaEnum;
 import store.ojuara.produtoapi.domain.enums.GeneroEnum;
 import store.ojuara.produtoapi.domain.enums.SetorEnum;
+import store.ojuara.produtoapi.domain.enums.TipoChuteiraEnum;
+import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoForm {
+public class ChuteiraUpdateForm {
 
-    @NotBlank(message = "O nome do chuteira é obrigatório.")
     private String nome;
-
     private String descricao;
-
     private String marca;
-
-    @NotBlank(message = "A cor do chuteira é obrigatória.")
     private String fornecedor;
-
-    @NotNull
-    @Min(0)
-    private BigDecimal precoFornecedor;
-
-    @NotNull
-    @Min(0)
-    private BigDecimal precoVenda;
-
-    @NotNull
     @Min(1)
+    private BigDecimal precoFornecedor;
+    @Min(1)
+    private BigDecimal precoVenda;
     private int quantidade;
-
     private String cor;
-
     private String imagemUrl;
-
-    @NotNull(message = "O setor da chuteira é obrigatório")
-    @Enumerated(EnumType.STRING)
     private SetorEnum setor;
-
     @Enumerated(EnumType.STRING)
     private GeneroEnum genero;
+
+    /**atributos exclusivos**/
+    private Integer pontuacao;
+    @Enumerated(EnumType.STRING)
+    private TipoChuteiraEnum tipo;
+    private String material;
+    private String solado;
+    private String cabedal;
+    private String peso;
+    private String medida;
+    @Enumerated(EnumType.STRING)
+    private TitpoTravaChuteiraEnum tipoTrava;
 }

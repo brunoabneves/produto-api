@@ -34,13 +34,6 @@ public class ProdutoGenerico implements Serializable {
 
     private UUID uuid = UUID.randomUUID();
 
-    @CreationTimestamp
-    private LocalDate createdAt;
-
-    @UpdateTimestamp
-    private LocalDate updatedAt;
-
-    private String updateReason;
     private String nome;
     private String descricao;
     private String marca;
@@ -49,6 +42,7 @@ public class ProdutoGenerico implements Serializable {
     private BigDecimal precoVenda;
     private Integer quantidade;
     private String cor;
+    private String material;
     private String imagemUrl;
 
     @Enumerated(EnumType.STRING)
@@ -59,4 +53,12 @@ public class ProdutoGenerico implements Serializable {
     private GeneroEnum genero;
     @Enumerated(EnumType.STRING)
     private SituacaoProdutoEnum situacaoProdutoEnum;
+
+    @CreationTimestamp
+    private LocalDate createdAt;
+
+    @UpdateTimestamp
+    private LocalDate updatedAt;
+
+    private String updateReason;
 }

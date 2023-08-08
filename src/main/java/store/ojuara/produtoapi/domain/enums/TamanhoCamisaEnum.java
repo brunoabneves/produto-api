@@ -5,11 +5,15 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum CategoriaEnum {
+public enum TamanhoCamisaEnum {
 
-    ACESSORIOS("Acessórios"),
-    ROUPAS("Roupas"),
-    CALCADOS("Calçados");
+    PP("PP"),
+    P("P"),
+    M("M"),
+    G("G"),
+    GG("GG"),
+    XG("XG"),
+    XXG("XXG");
 
     private final String descricao;
 }

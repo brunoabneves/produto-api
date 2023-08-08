@@ -8,6 +8,7 @@ import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
 import store.ojuara.produtoapi.domain.enums.TipoChuteiraEnum;
 import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
 import store.ojuara.produtoapi.domain.form.ChuteiraForm;
+import store.ojuara.produtoapi.domain.form.ChuteiraUpdateForm;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -17,7 +18,7 @@ public interface ChuteiraService {
     ChuteiraDTO visualizarPorUuid(UUID uuid);
     Page<ChuteiraDTO> listar(Pageable paginacao);
     ChuteiraDTO cadastrar(ChuteiraForm form);
-    ChuteiraDTO atualizar(Long id, ChuteiraForm form);
+    ChuteiraDTO atualizar(Long id, ChuteiraUpdateForm form);
     void excluir(Long id);
     Page<ChuteiraDTO> pesquisarComFiltrosSpecification(String nome, String descricao, String fabricante,
                                                        SituacaoProdutoEnum situacao, BigDecimal valorInicial, BigDecimal valorFinal,

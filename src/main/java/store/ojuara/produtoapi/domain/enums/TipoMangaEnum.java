@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum CategoriaEnum {
+public enum TipoMangaEnum {
 
-    ACESSORIOS("Acessórios"),
-    ROUPAS("Roupas"),
-    CALCADOS("Calçados");
+    MANGA_CURTA("Manga longa"),
+    MANGA_LONGA("Manga curta"),
+    REGATA("Regata");
 
     private final String descricao;
 }
