@@ -17,6 +17,7 @@ import store.ojuara.produtoapi.domain.model.Tenis;
 import store.ojuara.produtoapi.mapper.TenisMapper;
 import store.ojuara.produtoapi.repository.TenisRepository;
 import store.ojuara.produtoapi.repository.specification.TenisSpecification;
+import store.ojuara.produtoapi.service.validator.TenisValidator;
 
 import java.math.BigDecimal;
 import java.util.UUID;

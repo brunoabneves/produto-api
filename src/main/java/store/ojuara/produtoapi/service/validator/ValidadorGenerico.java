@@ -1,4 +1,4 @@
-package store.ojuara.produtoapi.service;
+package store.ojuara.produtoapi.service.validator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

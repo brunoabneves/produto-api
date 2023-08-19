@@ -17,6 +17,7 @@ import store.ojuara.produtoapi.domain.model.Camisa;
 import store.ojuara.produtoapi.mapper.CamisaMapper;
 import store.ojuara.produtoapi.repository.CamisaRepository;
 import store.ojuara.produtoapi.repository.specification.CamisaSpecification;
+import store.ojuara.produtoapi.service.validator.CamisaValidator;
 
 import java.math.BigDecimal;
 import java.util.UUID;

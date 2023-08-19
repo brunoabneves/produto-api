@@ -14,6 +14,7 @@ import store.ojuara.produtoapi.domain.model.Chuteira;
 import store.ojuara.produtoapi.mapper.ChuteiraMapper;
 import store.ojuara.produtoapi.repository.ChuteiraRepository;
 import store.ojuara.produtoapi.repository.specification.ChuteiraSpecification;
+import store.ojuara.produtoapi.service.validator.ChuteiraValidator;
 
 import java.math.BigDecimal;
 import java.util.UUID;

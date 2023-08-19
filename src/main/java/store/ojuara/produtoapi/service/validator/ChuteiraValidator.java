@@ -1,4 +1,4 @@
-package store.ojuara.produtoapi.service.chuteira;
+package store.ojuara.produtoapi.service.validator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,6 @@ import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
 import store.ojuara.produtoapi.domain.form.ChuteiraForm;
 import store.ojuara.produtoapi.domain.model.Chuteira;
 import store.ojuara.produtoapi.repository.ChuteiraRepository;
-import store.ojuara.produtoapi.service.ValidadorGenerico;
 import store.ojuara.produtoapi.shared.exception.RegraDeNegocioException;
 
 import javax.persistence.EntityNotFoundException;

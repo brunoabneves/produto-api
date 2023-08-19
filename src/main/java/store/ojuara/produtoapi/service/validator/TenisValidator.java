@@ -1,4 +1,4 @@
-package store.ojuara.produtoapi.service.tenis;
+package store.ojuara.produtoapi.service.validator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import store.ojuara.produtoapi.domain.form.TenisForm;
 import store.ojuara.produtoapi.domain.model.Tenis;
 import store.ojuara.produtoapi.repository.TenisRepository;
-import store.ojuara.produtoapi.service.ValidadorGenerico;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
