@@ -28,7 +28,16 @@ public class TenisSpecification {
             temp = filterByModalidade(modalidade);
             spec=spec!=null?Specification.where(spec).and(temp):temp;
         }
+        if(Objects.nonNull(pontuacao)){
+            temp = filterByPontuacao(pontuacao);
+            spec=spec!=null?Specification.where(spec).and(temp):temp;
+        }
         return spec;
+    }
+
+    public Specification<Tenis> filterByPontuacao(Integer pontuacao) {
+        return (root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("pontuacao"), pontuacao);
     }
 
     public Specification<Tenis> filterByModalidade(ModalidadeEnum modalidade){
