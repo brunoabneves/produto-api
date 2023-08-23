@@ -2,8 +2,8 @@ package store.ojuara.produtoapi.repository.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.SituacaoProduto;
 import store.ojuara.produtoapi.domain.model.ProdutoGenerico;
 
 import java.math.BigDecimal;
@@ -12,8 +12,8 @@ import java.util.Objects;
 @Component
 public class GenericSpecification<T extends ProdutoGenerico> {
 
-    public Specification<T> filtrar(String nome, String descricao, String fabricante, SituacaoProdutoEnum situacao,
-                                    BigDecimal valorInicial, BigDecimal valorFinal, String cor, SetorEnum setor, String material) {
+    public Specification<T> filtrar(String nome, String descricao, String fabricante, SituacaoProduto situacao,
+                                    BigDecimal valorInicial, BigDecimal valorFinal, String cor, Setor setor, String material) {
         Specification<T> spec = null;
         Specification<T> temp = null;
 
@@ -83,12 +83,12 @@ public class GenericSpecification<T extends ProdutoGenerico> {
                 criteriaBuilder.like(criteriaBuilder.lower(root.get("cor")), "%" + cor.toLowerCase() + "%");
     }
 
-    public Specification<T> filterBySituacao(SituacaoProdutoEnum situacao){
+    public Specification<T> filterBySituacao(SituacaoProduto situacao){
         return (root, criteriaQuery, criteriaBuilder) ->
                 criteriaBuilder.equal(root.get("situacao"), situacao);
     }
 
-    public Specification<T> filterBySetor(SetorEnum setor){
+    public Specification<T> filterBySetor(Setor setor){
         return (root, criteriaQuery, criteriaBuilder) ->
                 criteriaBuilder.equal(root.get("setor"), setor);
     }

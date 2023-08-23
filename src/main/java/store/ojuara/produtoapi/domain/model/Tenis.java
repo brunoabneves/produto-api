@@ -1,7 +1,10 @@
 package store.ojuara.produtoapi.domain.model;
 
-import lombok.*;
-import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import store.ojuara.produtoapi.domain.enums.Modalidade;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,5 +24,5 @@ public class Tenis extends ProdutoGenerico {
     private String peso;
     private String medida;
     @Enumerated(EnumType.STRING)
-    private ModalidadeEnum modalidade;
+    private Modalidade modalidade;
 }

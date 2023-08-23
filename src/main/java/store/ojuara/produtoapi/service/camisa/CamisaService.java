@@ -3,9 +3,9 @@ package store.ojuara.produtoapi.service.camisa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import store.ojuara.produtoapi.domain.dto.CamisaDTO;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
-import store.ojuara.produtoapi.domain.enums.TamanhoCamisaEnum;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.SituacaoProduto;
+import store.ojuara.produtoapi.domain.enums.TamanhoCamisa;
 import store.ojuara.produtoapi.domain.form.CamisaForm;
 import store.ojuara.produtoapi.domain.form.CamisaUpdateForm;
 
@@ -20,8 +20,8 @@ public interface CamisaService {
     CamisaDTO cadastrar(CamisaForm form);
     public CamisaDTO atualizar(Long id, CamisaUpdateForm updateForm);
     void excluir(Long id);
-    Page<CamisaDTO> pesquisarComFiltrosSpecification(String nome, String descricao, String fabricante, SituacaoProdutoEnum situacao,
+    Page<CamisaDTO> pesquisarComFiltrosSpecification(String nome, String descricao, String fabricante, SituacaoProduto situacao,
                                                      BigDecimal valorInicial, BigDecimal valorFinal, String cor,
-                                                     SetorEnum setor, String material, TamanhoCamisaEnum tamanhoCamisa,
+                                                     Setor setor, String material, TamanhoCamisa tamanhoCamisa,
                                                      boolean isCamisaDeTime, String time, Pageable paginacao);
 }

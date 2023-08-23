@@ -3,8 +3,8 @@ package store.ojuara.produtoapi.service.validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import store.ojuara.produtoapi.domain.enums.TipoChuteiraEnum;
-import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
+import store.ojuara.produtoapi.domain.enums.TipoChuteira;
+import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteira;
 import store.ojuara.produtoapi.domain.form.ChuteiraForm;
 import store.ojuara.produtoapi.domain.model.Chuteira;
 import store.ojuara.produtoapi.repository.ChuteiraRepository;
@@ -36,10 +36,10 @@ public class ChuteiraValidator {
     }
     
     private void validaTipoTrava(ChuteiraForm form) {
-        boolean isChuteiraComTrava = form.getTipo().equals(TipoChuteiraEnum.FUTEBOL_CAMPO);
-        if(isChuteiraComTrava && form.getTipoTrava().equals(TitpoTravaChuteiraEnum.SEM_TRAVAS)){
-            throw new RegraDeNegocioException("O tipo de trava de uma chuteira de campo, não pode ser do tipo: "+TitpoTravaChuteiraEnum.SEM_TRAVAS.getDescricao());
-        } else if(!isChuteiraComTrava && !form.getTipoTrava().equals(TitpoTravaChuteiraEnum.SEM_TRAVAS)) {
+        boolean isChuteiraComTrava = form.getTipo().equals(TipoChuteira.FUTEBOL_CAMPO);
+        if(isChuteiraComTrava && form.getTipoTrava().equals(TitpoTravaChuteira.SEM_TRAVAS)){
+            throw new RegraDeNegocioException("O tipo de trava de uma chuteira de campo, não pode ser do tipo: "+TitpoTravaChuteira.SEM_TRAVAS.getDescricao());
+        } else if(!isChuteiraComTrava && !form.getTipoTrava().equals(TitpoTravaChuteira.SEM_TRAVAS)) {
             throw new RegraDeNegocioException("Chuteiras que não sejam de futebol de campo, não devem ter travas.");
         }
     }

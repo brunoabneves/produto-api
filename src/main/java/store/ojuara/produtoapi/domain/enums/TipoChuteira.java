@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum GeneroEnum {
+public enum TipoChuteira {
 
-    MASCULINO("Masculino"),
-    FEMININO("Feminino"),
-    UNISEX("Unisex");
+    FUTEBOL_CAMPO("Futebol de campo"),
+    FUTSAL("Futsal"),
+    SOCIETY("Society");
 
     private final String descricao;
 }

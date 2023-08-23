@@ -7,10 +7,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.ojuara.produtoapi.domain.dto.CamisaDTO;
-import store.ojuara.produtoapi.domain.enums.CategoriaEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
-import store.ojuara.produtoapi.domain.enums.TamanhoCamisaEnum;
+import store.ojuara.produtoapi.domain.enums.Categoria;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.SituacaoProduto;
+import store.ojuara.produtoapi.domain.enums.TamanhoCamisa;
 import store.ojuara.produtoapi.domain.form.CamisaForm;
 import store.ojuara.produtoapi.domain.form.CamisaUpdateForm;
 import store.ojuara.produtoapi.domain.model.Camisa;
@@ -53,8 +53,8 @@ public class CamisaServiceImpl implements CamisaService{
     public CamisaDTO cadastrar(CamisaForm form) {
         validator.validarCadastro(form);
         var camisa = mapper.toModel(form);
-        camisa.setCategoria(CategoriaEnum.ROUPAS);
-        camisa.setSituacaoProdutoEnum(SituacaoProdutoEnum.CADASTRADO);
+        camisa.setCategoria(Categoria.ROUPAS);
+        camisa.setSituacaoProdutoEnum(SituacaoProduto.CADASTRADO);
 
         return mapper.toDto(repository.save(camisa));
     }
@@ -75,9 +75,9 @@ public class CamisaServiceImpl implements CamisaService{
 
     @Override
     @Transactional(readOnly = true)
-    public Page<CamisaDTO> pesquisarComFiltrosSpecification(String nome, String descricao, String fabricante, SituacaoProdutoEnum situacao,
+    public Page<CamisaDTO> pesquisarComFiltrosSpecification(String nome, String descricao, String fabricante, SituacaoProduto situacao,
                                                             BigDecimal valorInicial, BigDecimal valorFinal, String cor,
-                                                            SetorEnum setor, String material, TamanhoCamisaEnum tamanhoCamisa,
+                                                            Setor setor, String material, TamanhoCamisa tamanhoCamisa,
                                                             boolean isCamisaDeTime, String time, Pageable paginacao) {
 
         Specification<Camisa> spec = specification.filtrar(nome, descricao, fabricante, situacao, valorInicial, valorFinal,

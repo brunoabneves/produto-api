@@ -12,10 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import store.ojuara.produtoapi.domain.dto.ChuteiraDTO;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
-import store.ojuara.produtoapi.domain.enums.TipoChuteiraEnum;
-import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.SituacaoProduto;
+import store.ojuara.produtoapi.domain.enums.TipoChuteira;
+import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteira;
 import store.ojuara.produtoapi.domain.form.ChuteiraForm;
 import store.ojuara.produtoapi.domain.form.ChuteiraUpdateForm;
 import store.ojuara.produtoapi.service.chuteira.ChuteiraService;
@@ -51,15 +51,15 @@ public class ChuteiraController {
             @RequestParam(value = "nome", required = false) String nome,
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "fabricante", required = false) String fabricante,
-            @RequestParam(value = "situacao", required = false) SituacaoProdutoEnum situacao,
+            @RequestParam(value = "situacao", required = false) SituacaoProduto situacao,
             @RequestParam(value = "valorInicial", required = false) BigDecimal valorInicial,
             @RequestParam(value = "valorFinal", required = false) BigDecimal valorFinal,
             @RequestParam(value = "pontuacao", required = false) Integer pontuacao,
             @RequestParam(value = "cor", required = false) String cor,
-            @RequestParam(value = "setor", required = false) SetorEnum setor,
-            @RequestParam(value = "tipoChuteira", required = false) TipoChuteiraEnum tipoChuteira,
+            @RequestParam(value = "setor", required = false) Setor setor,
+            @RequestParam(value = "tipoChuteira", required = false) TipoChuteira tipoChuteira,
             @RequestParam(value = "material", required = false) String material,
-            @RequestParam(value = "tipoTrava", required = false) TitpoTravaChuteiraEnum tipoTrava,
+            @RequestParam(value = "tipoTrava", required = false) TitpoTravaChuteira tipoTrava,
             @ParameterObject @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao) {
 
         return ResponseEntity.ok(service.pesquisarComFiltrosSpecification(nome, descricao, fabricante, situacao, valorInicial, valorFinal,

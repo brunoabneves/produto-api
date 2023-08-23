@@ -1,9 +1,12 @@
 package store.ojuara.produtoapi.domain.model;
 
-import lombok.*;
-import store.ojuara.produtoapi.domain.enums.TamanhoCamisaEnum;
-import store.ojuara.produtoapi.domain.enums.TipoGolaEnum;
-import store.ojuara.produtoapi.domain.enums.TipoMangaEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import store.ojuara.produtoapi.domain.enums.TamanhoCamisa;
+import store.ojuara.produtoapi.domain.enums.TipoGola;
+import store.ojuara.produtoapi.domain.enums.TipoManga;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,14 +20,14 @@ import javax.persistence.Enumerated;
 public class Camisa extends ProdutoGenerico{
 
     @Enumerated(EnumType.STRING)
-    private TamanhoCamisaEnum tamanhoCamisa;
+    private TamanhoCamisa tamanhoCamisa;
     private Integer alturaEmCm;
     private Integer larguraEmCm;
     private boolean camisaDeTime;
     private boolean permitePersonalizacao;
     private String time;
     @Enumerated(EnumType.STRING)
-    private TipoGolaEnum tipoGola;
+    private TipoGola tipoGola;
     @Enumerated(EnumType.STRING)
-    private TipoMangaEnum tipoManga;
+    private TipoManga tipoManga;
 }

@@ -50,9 +50,9 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     public ChuteiraDTO cadastrar(ChuteiraForm form) {
         validator.validarCadastro(form);
         var chuteira = mapper.toModel(form);
-        chuteira.setCategoria(CategoriaEnum.CALCADOS);
-        chuteira.setModalidade(ModalidadeEnum.FUTEBOL);
-        chuteira.setSituacaoProdutoEnum(SituacaoProdutoEnum.CADASTRADO);
+        chuteira.setCategoria(Categoria.CALCADOS);
+        chuteira.setModalidade(Modalidade.FUTEBOL);
+        chuteira.setSituacaoProdutoEnum(SituacaoProduto.CADASTRADO);
 
         return mapper.toDto(repository.save(chuteira));
     }
@@ -74,9 +74,9 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     @Override
     @Transactional(readOnly = true)
     public Page<ChuteiraDTO> pesquisarComFiltrosSpecification(String nome, String descricao, String fabricante,
-                                                              SituacaoProdutoEnum situacao, BigDecimal valorInicial, BigDecimal valorFinal,
-                                                              Integer pontuacao, String cor, SetorEnum setor, TipoChuteiraEnum tipoChuteira,
-                                                              String material, TitpoTravaChuteiraEnum tipoTrava, Pageable paginacao) {
+                                                              SituacaoProduto situacao, BigDecimal valorInicial, BigDecimal valorFinal,
+                                                              Integer pontuacao, String cor, Setor setor, TipoChuteira tipoChuteira,
+                                                              String material, TitpoTravaChuteira tipoTrava, Pageable paginacao) {
 
         Specification<Chuteira> spec = specification.filtrar(nome, descricao, fabricante,
                 situacao, valorInicial, valorFinal, pontuacao, cor, setor, material, tipoChuteira, tipoTrava);

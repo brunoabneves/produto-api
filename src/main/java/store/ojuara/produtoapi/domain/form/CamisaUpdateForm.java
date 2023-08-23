@@ -31,14 +31,14 @@ public class CamisaUpdateForm {
     private String imagemUrl;
 
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
 
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
 
     /** atributos exclusivos **/
     @Enumerated(EnumType.STRING)
-    private TamanhoCamisaEnum tamanhoCamisa;
+    private TamanhoCamisa tamanhoCamisa;
     private Integer alturaEmCm;
     private Integer larguraEmCm;
     private boolean camisaDeTime;
@@ -46,8 +46,8 @@ public class CamisaUpdateForm {
     private String time;
 
     @Enumerated(EnumType.STRING)
-    private TipoGolaEnum tipoGola;
+    private TipoGola tipoGola;
 
     @Enumerated(EnumType.STRING)
-    private TipoMangaEnum tipoManga;
+    private TipoManga tipoManga;
 }

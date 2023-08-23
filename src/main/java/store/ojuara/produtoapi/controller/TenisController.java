@@ -12,9 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import store.ojuara.produtoapi.domain.dto.TenisDTO;
-import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
+import store.ojuara.produtoapi.domain.enums.Modalidade;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.SituacaoProduto;
 import store.ojuara.produtoapi.domain.form.TenisForm;
 import store.ojuara.produtoapi.domain.form.TenisUpdateForm;
 import store.ojuara.produtoapi.service.tenis.TenisService;
@@ -50,14 +50,14 @@ public class TenisController {
             @RequestParam(value = "nome", required = false) String nome,
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "fabricante", required = false) String fabricante,
-            @RequestParam(value = "situacao", required = false) SituacaoProdutoEnum situacao,
+            @RequestParam(value = "situacao", required = false) SituacaoProduto situacao,
             @RequestParam(value = "valorInicial", required = false) BigDecimal valorInicial,
             @RequestParam(value = "valorFinal", required = false) BigDecimal valorFinal,
             @RequestParam(value = "pontuacao", required = false) Integer pontuacao,
             @RequestParam(value = "cor", required = false) String cor,
-            @RequestParam(value = "setor", required = false) SetorEnum setor,
+            @RequestParam(value = "setor", required = false) Setor setor,
             @RequestParam(value = "material", required = false) String material,
-            @RequestParam(value = "modalidade", required = false) ModalidadeEnum modalidade,
+            @RequestParam(value = "modalidade", required = false) Modalidade modalidade,
             @ParameterObject @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao) {
 
         return ResponseEntity.ok(service.pesquisarComFiltrosSpecification(nome, descricao, fabricante, situacao, valorInicial, valorFinal,

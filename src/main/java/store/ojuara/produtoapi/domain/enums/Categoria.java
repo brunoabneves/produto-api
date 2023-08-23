@@ -5,12 +5,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TipoGolaEnum {
+public enum Categoria {
 
-    GOLA_REDONDA("Gola Redonda"),
-    GOLA_V("Gola em V"),
-    GOLA_POLO("Gola Polo"),
-    GOLA_BOTAO("Gola com Botão");
+    ACESSORIOS("Acessórios"),
+    ROUPAS("Roupas"),
+    CALCADOS("Calçados");
 
     private final String descricao;
 }

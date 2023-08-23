@@ -29,19 +29,19 @@ public class ChuteiraDTO {
     private String cor;
     private String imagemUrl;
     @Enumerated(EnumType.STRING)
-    private CategoriaEnum categoria;
+    private Categoria categoria;
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
     @Enumerated(EnumType.STRING)
-    private SituacaoProdutoEnum situacaoProdutoEnum;
+    private SituacaoProduto situacaoProdutoEnum;
     @Enumerated(EnumType.STRING)
-    private ModalidadeEnum modalidade;
+    private Modalidade modalidade;
 
     private Integer pontuacao;
     @Enumerated(EnumType.STRING)
-    private TipoChuteiraEnum tipo;
+    private TipoChuteira tipo;
     private String material;
     private String solado;
     private String cabedal;

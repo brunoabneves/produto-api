@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TitpoTravaChuteiraEnum {
+public enum TitpoTravaChuteira {
 
     FIXA("Fixa"),
     MISTA("Mista"),

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum SetorEnum {
+public enum Setor {
 
     ADULTO("Adulto"),
     INFANTIL("Infantil");

@@ -3,9 +3,9 @@ package store.ojuara.produtoapi.domain.form;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import store.ojuara.produtoapi.domain.enums.GeneroEnum;
-import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
+import store.ojuara.produtoapi.domain.enums.Genero;
+import store.ojuara.produtoapi.domain.enums.Modalidade;
+import store.ojuara.produtoapi.domain.enums.Setor;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -47,10 +47,10 @@ public class TenisForm {
 
     @NotNull(message = "Setor é obrigatório")
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
 
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
 
     @NotNull
     private Integer pontuacao;
@@ -69,5 +69,5 @@ public class TenisForm {
 
     @NotNull(message = "Modalidade é obrigatória.")
     @Enumerated(EnumType.STRING)
-    private ModalidadeEnum modalidade;
+    private Modalidade modalidade;
 }

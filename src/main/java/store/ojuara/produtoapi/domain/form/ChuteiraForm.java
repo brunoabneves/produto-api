@@ -3,14 +3,13 @@ package store.ojuara.produtoapi.domain.form;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import store.ojuara.produtoapi.domain.enums.GeneroEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.TipoChuteiraEnum;
-import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteiraEnum;
+import store.ojuara.produtoapi.domain.enums.Genero;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.TipoChuteira;
+import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteira;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -49,17 +48,17 @@ public class ChuteiraForm {
 
     @NotNull(message = "Setor é obrigatório")
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
 
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
 
     @NotNull
     private Integer pontuacao;
 
     @NotNull(message = "Tipo é obrigatório.")
     @Enumerated(EnumType.STRING)
-    private TipoChuteiraEnum tipo;
+    private TipoChuteira tipo;
 
     @NotBlank(message = "Material é obrigatório.")
     private String material;
@@ -78,5 +77,5 @@ public class ChuteiraForm {
 
     @NotNull(message = "O tipo de trava é obrigatório.")
     @Enumerated(EnumType.STRING)
-    private TitpoTravaChuteiraEnum tipoTrava;
+    private TitpoTravaChuteira tipoTrava;
 }

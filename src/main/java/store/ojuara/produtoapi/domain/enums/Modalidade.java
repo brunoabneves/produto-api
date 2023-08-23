@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ModalidadeEnum {
+public enum Modalidade {
 
     ACADEMIA_E_FITNESS("Academia e Fitness"),
     AVENTURA_E_ESPORTES_RADICAIS("Aventura e Esportes Radicais"),

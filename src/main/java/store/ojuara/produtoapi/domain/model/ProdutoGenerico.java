@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import store.ojuara.produtoapi.domain.enums.CategoriaEnum;
-import store.ojuara.produtoapi.domain.enums.GeneroEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
+import store.ojuara.produtoapi.domain.enums.Categoria;
+import store.ojuara.produtoapi.domain.enums.Genero;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.SituacaoProduto;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -46,13 +46,13 @@ public class ProdutoGenerico implements Serializable {
     private String imagemUrl;
 
     @Enumerated(EnumType.STRING)
-    private CategoriaEnum categoria;
+    private Categoria categoria;
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
     @Enumerated(EnumType.STRING)
-    private SituacaoProdutoEnum situacaoProdutoEnum;
+    private SituacaoProduto situacaoProdutoEnum;
 
     @CreationTimestamp
     private LocalDate createdAt;

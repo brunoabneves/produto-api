@@ -29,22 +29,22 @@ public class CamisaDTO {
     private String cor;
     private String imagemUrl;
     @Enumerated(EnumType.STRING)
-    private CategoriaEnum categoria;
+    private Categoria categoria;
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
     @Enumerated(EnumType.STRING)
-    private SituacaoProdutoEnum situacaoProdutoEnum;
+    private SituacaoProduto situacaoProdutoEnum;
     @Enumerated(EnumType.STRING)
-    private TamanhoCamisaEnum tamanhoCamisa;
+    private TamanhoCamisa tamanhoCamisa;
     private Integer alturaEmCm;
     private Integer larguraEmCm;
     private boolean isCamisaDeTime;
     private boolean permitePersonalizacao;
     private String time;
     @Enumerated(EnumType.STRING)
-    private TipoGolaEnum tipoGola;
+    private TipoGola tipoGola;
     @Enumerated(EnumType.STRING)
-    private TipoMangaEnum tipoManga;
+    private TipoManga tipoManga;
 }

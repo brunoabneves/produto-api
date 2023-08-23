@@ -3,9 +3,9 @@ package store.ojuara.produtoapi.domain.form;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import store.ojuara.produtoapi.domain.enums.GeneroEnum;
-import store.ojuara.produtoapi.domain.enums.ModalidadeEnum;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
+import store.ojuara.produtoapi.domain.enums.Genero;
+import store.ojuara.produtoapi.domain.enums.Modalidade;
+import store.ojuara.produtoapi.domain.enums.Setor;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,9 +30,9 @@ public class TenisUpdateForm {
     private String cor;
     private String imagemUrl;
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
 
     /**atributos exclusivos**/
     private Integer pontuacao;
@@ -42,5 +42,5 @@ public class TenisUpdateForm {
     private String peso;
     private String medida;
     @Enumerated(EnumType.STRING)
-    private ModalidadeEnum modalidade;
+    private Modalidade modalidade;
 }

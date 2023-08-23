@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TipoMangaEnum {
+public enum TipoManga {
 
     MANGA_CURTA("Manga longa"),
     MANGA_LONGA("Manga curta"),

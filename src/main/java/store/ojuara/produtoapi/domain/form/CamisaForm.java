@@ -45,14 +45,14 @@ public class CamisaForm {
 
     @NotNull(message = "O setor da chuteira é obrigatório")
     @Enumerated(EnumType.STRING)
-    private SetorEnum setor;
+    private Setor setor;
 
     @Enumerated(EnumType.STRING)
-    private GeneroEnum genero;
+    private Genero genero;
 
     @NotNull(message = "O tamanho da camisa é obrigatório")
     @Enumerated(EnumType.STRING)
-    private TamanhoCamisaEnum tamanhoCamisa;
+    private TamanhoCamisa tamanhoCamisa;
 
     @NotNull
     private Integer alturaEmCm;
@@ -70,9 +70,9 @@ public class CamisaForm {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private TipoGolaEnum tipoGola;
+    private TipoGola tipoGola;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private TipoMangaEnum tipoManga;
+    private TipoManga tipoManga;
 }

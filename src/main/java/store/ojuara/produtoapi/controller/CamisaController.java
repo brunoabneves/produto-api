@@ -12,9 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import store.ojuara.produtoapi.domain.dto.CamisaDTO;
-import store.ojuara.produtoapi.domain.enums.SetorEnum;
-import store.ojuara.produtoapi.domain.enums.SituacaoProdutoEnum;
-import store.ojuara.produtoapi.domain.enums.TamanhoCamisaEnum;
+import store.ojuara.produtoapi.domain.enums.Setor;
+import store.ojuara.produtoapi.domain.enums.SituacaoProduto;
+import store.ojuara.produtoapi.domain.enums.TamanhoCamisa;
 import store.ojuara.produtoapi.domain.form.CamisaForm;
 import store.ojuara.produtoapi.domain.form.CamisaUpdateForm;
 import store.ojuara.produtoapi.service.camisa.CamisaService;
@@ -50,13 +50,13 @@ public class CamisaController {
             @RequestParam(value = "nome", required = false) String nome,
             @RequestParam(value = "descricao", required = false) String descricao,
             @RequestParam(value = "fabricante", required = false) String fabricante,
-            @RequestParam(value = "situacao", required = false) SituacaoProdutoEnum situacao,
+            @RequestParam(value = "situacao", required = false) SituacaoProduto situacao,
             @RequestParam(value = "valorInicial", required = false) BigDecimal valorInicial,
             @RequestParam(value = "valorFinal", required = false) BigDecimal valorFinal,
             @RequestParam(value = "cor", required = false) String cor,
-            @RequestParam(value = "setor", required = false) SetorEnum setor,
+            @RequestParam(value = "setor", required = false) Setor setor,
             @RequestParam(value = "material", required = false) String material,
-            @RequestParam(value = "tamahoCamisa", required = false) TamanhoCamisaEnum tamahoCamisa,
+            @RequestParam(value = "tamahoCamisa", required = false) TamanhoCamisa tamahoCamisa,
             @RequestParam(value = "isCamisaDeTime", required = false) boolean isCamisaDeTime,
             @RequestParam(value = "time", required = false) String time,
             @ParameterObject @PageableDefault(sort = "id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao) {
