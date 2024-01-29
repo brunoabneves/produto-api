@@ -8,6 +8,7 @@ import store.ojuara.produtoapi.domain.enums.TamanhoCamisa;
 import store.ojuara.produtoapi.domain.enums.TipoGola;
 import store.ojuara.produtoapi.domain.enums.TipoManga;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,6 +18,7 @@ import javax.persistence.Enumerated;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@DiscriminatorValue("camisa")
 public class Camisa extends ProdutoGenerico{
 
     @Enumerated(EnumType.STRING)

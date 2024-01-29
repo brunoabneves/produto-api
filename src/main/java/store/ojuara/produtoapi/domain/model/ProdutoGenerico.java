@@ -1,8 +1,6 @@
 package store.ojuara.produtoapi.domain.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,11 +16,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 @Getter
 @Setter
-@MappedSuperclass
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_produto", discriminatorType = DiscriminatorType.STRING)
 public class ProdutoGenerico implements Serializable {
 
     @Serial

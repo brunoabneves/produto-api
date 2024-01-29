@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import store.ojuara.produtoapi.domain.enums.Modalidade;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,6 +16,7 @@ import javax.persistence.Enumerated;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@DiscriminatorValue("tenis")
 public class Tenis extends ProdutoGenerico {
 
     private Integer pontuacao;
