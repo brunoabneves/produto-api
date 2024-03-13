@@ -8,6 +8,7 @@ import store.ojuara.produtoapi.domain.enums.Modalidade;
 import store.ojuara.produtoapi.domain.enums.TipoChuteira;
 import store.ojuara.produtoapi.domain.enums.TitpoTravaChuteira;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,6 +18,7 @@ import javax.persistence.Enumerated;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@DiscriminatorValue("chuteira")
 public class Chuteira extends ProdutoGenerico{
 
     private Integer pontuacao;
