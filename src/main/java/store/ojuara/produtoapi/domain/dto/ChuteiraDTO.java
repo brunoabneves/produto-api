@@ -36,12 +36,14 @@ public class ChuteiraDTO {
     private Genero genero;
     @Enumerated(EnumType.STRING)
     private SituacaoProduto situacaoProdutoEnum;
+
     @Enumerated(EnumType.STRING)
     private Modalidade modalidade;
-
     private Integer pontuacao;
     @Enumerated(EnumType.STRING)
     private TipoChuteira tipo;
+    @Enumerated(EnumType.STRING)
+    private TitpoTravaChuteira tipoTrava;
     private String material;
     private String solado;
     private String cabedal;
