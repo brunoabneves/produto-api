@@ -36,6 +36,7 @@ public class TenisDTO {
     private Genero genero;
     @Enumerated(EnumType.STRING)
     private SituacaoProduto situacaoProdutoEnum;
+
     @Enumerated(EnumType.STRING)
     private Modalidade modalidade;
     private Integer pontuacao;

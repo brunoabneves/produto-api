@@ -36,11 +36,12 @@ public class CamisaDTO {
     private Genero genero;
     @Enumerated(EnumType.STRING)
     private SituacaoProduto situacaoProdutoEnum;
+
     @Enumerated(EnumType.STRING)
     private TamanhoCamisa tamanhoCamisa;
     private Integer alturaEmCm;
     private Integer larguraEmCm;
-    private boolean isCamisaDeTime;
+    private boolean camisaDeTime;
     private boolean permitePersonalizacao;
     private String time;
     @Enumerated(EnumType.STRING)
