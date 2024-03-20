@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoCompletoDTO {
+public class ProdutoGenericoDTO {
 
     private Long id;
     private UUID uuid;
@@ -28,36 +28,26 @@ public class ProdutoCompletoDTO {
     private Integer quantidade;
     private String cor;
     private String imagemUrl;
-    @Enumerated(EnumType.STRING)
-    private Categoria categoria;
-    @Enumerated(EnumType.STRING)
-    private Setor setor;
-    @Enumerated(EnumType.STRING)
-    private Genero genero;
-    @Enumerated(EnumType.STRING)
-    private SituacaoProduto situacaoProdutoEnum;
-
-    @Enumerated(EnumType.STRING)
-    private TamanhoCamisa tamanhoCamisa;
-    private Integer alturaEmCm;
-    private Integer larguraEmCm;
-    private boolean isCamisaDeTime;
-    private boolean permitePersonalizacao;
-    private String time;
-    @Enumerated(EnumType.STRING)
-    private TipoGola tipoGola;
-    @Enumerated(EnumType.STRING)
-    private TipoManga tipoManga;
-
-    @Enumerated(EnumType.STRING)
-    private Modalidade modalidade;
+    private String categoria;
+    private String setor;
+    private String genero;
+    private String situacaoProdutoEnum;
+    private String modalidade;
     private Integer pontuacao;
-    @Enumerated(EnumType.STRING)
-    private TipoChuteira tipo;
+    private String tipo;
+    private String tipoTrava;
     private String material;
     private String solado;
     private String cabedal;
     private String peso;
     private String medida;
     private String palmilha;
+    private String tamanhoCamisa;
+    private Integer alturaEmCm;
+    private Integer larguraEmCm;
+    private boolean camisaDeTime;
+    private boolean permitePersonalizacao;
+    private String time;
+    private String tipoGola;
+    private String tipoManga;
 }

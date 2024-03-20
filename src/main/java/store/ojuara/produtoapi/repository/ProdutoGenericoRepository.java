@@ -8,6 +8,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface ProdutoRepository <T extends ProdutoGenerico> extends JpaRepository<T, Long> {
-    Optional<T> findByUuid(UUID uuid);
+public interface ProdutoGenericoRepository extends JpaRepository<ProdutoGenerico, Long> {
+    Optional<ProdutoGenerico> findByUuid(UUID uuid);
 }
