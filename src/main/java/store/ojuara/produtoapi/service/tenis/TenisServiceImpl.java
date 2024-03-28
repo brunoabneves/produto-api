@@ -17,7 +17,7 @@ import store.ojuara.produtoapi.domain.model.Tenis;
 import store.ojuara.produtoapi.mapper.TenisMapper;
 import store.ojuara.produtoapi.repository.TenisRepository;
 import store.ojuara.produtoapi.repository.specification.TenisSpecification;
-import store.ojuara.produtoapi.service.validator.TenisValidator;
+import store.ojuara.produtoapi.service.validator.ProdutoGenericoValidator;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -29,17 +29,17 @@ public class TenisServiceImpl implements TenisService{
 
     private final TenisRepository repository;
     private final TenisMapper mapper;
-    private final TenisValidator validator;
+    private final ProdutoGenericoValidator validator;
     private final TenisSpecification specification;
 
     @Override
     public TenisDTO visualizar(Long id) {
-        return mapper.toDto(validator.verificarExistencia(id));
+        return mapper.toDto((Tenis) validator.verificarExistencia(id));
     }
 
     @Override
     public TenisDTO visualizarPorUuid(UUID uuid) {
-        return mapper.toDto(validator.verificarExistencia(uuid));
+        return mapper.toDto((Tenis) validator.verificarExistencia(uuid));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class TenisServiceImpl implements TenisService{
 
     @Override
     public TenisDTO cadastrar(TenisForm form) {
-        validator.validarCadastro(form);
+        validator.validaPrecos(form.getPrecoFornecedor(), form.getPrecoVenda());
         var tenis = mapper.toModel(form);
         tenis.setCategoria(Categoria.CALCADOS);
         tenis.setSituacaoProdutoEnum(SituacaoProduto.CADASTRADO);
@@ -61,7 +61,7 @@ public class TenisServiceImpl implements TenisService{
 
     @Override
     public TenisDTO atualizar(Long id, TenisUpdateForm form) {
-        var tenis = validator.verificarExistencia(id);
+        var tenis = (Tenis) validator.verificarExistencia(id);
         mapper.updateTenisFromTenisUpdateForm(form, tenis);
 
         return mapper.toDto(repository.save(tenis));
@@ -69,7 +69,7 @@ public class TenisServiceImpl implements TenisService{
 
     @Override
     public void excluir(Long id) {
-        var tenis = validator.verificarExistencia(id);
+        var tenis = (Tenis) validator.verificarExistencia(id);
         repository.delete(tenis);
     }
 

@@ -1,14 +1,15 @@
 package store.ojuara.produtoapi.service.validator;
 
-import org.springframework.stereotype.Service;
-import store.ojuara.produtoapi.shared.exception.RegraDeNegocioException;
+import store.ojuara.produtoapi.domain.model.ProdutoGenerico;
 
-@Service
-public class ProdutoGenericoValidator {
+import java.math.BigDecimal;
+import java.util.UUID;
 
-    public void validarQuantidade(int qtdProduto, int qtdProdutoExterno) {
-        if(qtdProduto < qtdProdutoExterno){
-            throw new RegraDeNegocioException("A quantidade do produto no pedido não pode ser maior que a quantidade em estoque");
-        }
-    }
+public interface ProdutoGenericoValidator {
+
+    ProdutoGenerico verificarExistencia(Long id);
+    ProdutoGenerico verificarExistencia(UUID uuid);
+    void validaPrecos(BigDecimal precoFornecedor, BigDecimal precoVenda);
+    void validarQuantidade(int qtdProduto, int qtdProdutoExterno);
+
 }

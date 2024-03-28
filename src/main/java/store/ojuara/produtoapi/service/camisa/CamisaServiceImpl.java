@@ -17,7 +17,7 @@ import store.ojuara.produtoapi.domain.model.Camisa;
 import store.ojuara.produtoapi.mapper.CamisaMapper;
 import store.ojuara.produtoapi.repository.CamisaRepository;
 import store.ojuara.produtoapi.repository.specification.CamisaSpecification;
-import store.ojuara.produtoapi.service.validator.CamisaValidator;
+import store.ojuara.produtoapi.service.validator.ProdutoGenericoValidator;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -28,18 +28,18 @@ import java.util.UUID;
 public class CamisaServiceImpl implements CamisaService {
 
     private final CamisaMapper mapper;
-    private final CamisaValidator validator;
+    private final ProdutoGenericoValidator validator;
     private final CamisaRepository repository;
     private final CamisaSpecification specification;
 
     @Override
     public CamisaDTO visualizar(Long id) {
-        return mapper.toDto(validator.verificarExistencia(id));
+        return mapper.toDto((Camisa) validator.verificarExistencia(id));
     }
 
     @Override
     public CamisaDTO visualizarPorUuid(UUID uuid) {
-        return mapper.toDto(validator.verificarExistencia(uuid));
+        return mapper.toDto((Camisa) validator.verificarExistencia(uuid));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class CamisaServiceImpl implements CamisaService {
 
     @Override
     public CamisaDTO cadastrar(CamisaForm form) {
-        validator.validarCadastro(form);
+        validator.validaPrecos(form.getPrecoFornecedor(), form.getPrecoVenda());
         var camisa = mapper.toModel(form);
         camisa.setCategoria(Categoria.ROUPAS);
         camisa.setSituacaoProdutoEnum(SituacaoProduto.CADASTRADO);
@@ -61,7 +61,7 @@ public class CamisaServiceImpl implements CamisaService {
 
     @Override
     public CamisaDTO atualizar(Long id, CamisaUpdateForm updateForm) {
-        var camisa = validator.verificarExistencia(id);
+        var camisa = (Camisa) validator.verificarExistencia(id);
         mapper.updateCamisaFromCamisaUpdateForm(updateForm, camisa);
 
         return mapper.toDto(repository.save(camisa));
@@ -69,7 +69,7 @@ public class CamisaServiceImpl implements CamisaService {
 
     @Override
     public void excluir(Long id) {
-        var camisa = validator.verificarExistencia(id);
+        var camisa = (Camisa) validator.verificarExistencia(id);
         repository.delete(camisa);
     }
 

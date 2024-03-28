@@ -15,6 +15,7 @@ import store.ojuara.produtoapi.mapper.ChuteiraMapper;
 import store.ojuara.produtoapi.repository.ChuteiraRepository;
 import store.ojuara.produtoapi.repository.specification.ChuteiraSpecification;
 import store.ojuara.produtoapi.service.validator.ChuteiraValidator;
+import store.ojuara.produtoapi.service.validator.ProdutoGenericoValidator;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -27,16 +28,17 @@ public class ChuteiraServiceImpl implements ChuteiraService {
     private final ChuteiraRepository repository;
     private final ChuteiraMapper mapper;
     private final ChuteiraValidator validator;
+    private final ProdutoGenericoValidator produtoGenericoValidator;
     private final ChuteiraSpecification specification;
 
     @Override
     public ChuteiraDTO visualizar(Long id) {
-        return mapper.toDto(validator.verificarExistencia(id));
+        return mapper.toDto((Chuteira) produtoGenericoValidator.verificarExistencia(id));
     }
 
     @Override
     public ChuteiraDTO visualizarPorUuid(UUID uuid) {
-        return mapper.toDto(validator.verificarExistencia(uuid));
+        return mapper.toDto((Chuteira) produtoGenericoValidator.verificarExistencia(uuid));
     }
 
     @Override
@@ -48,7 +50,7 @@ public class ChuteiraServiceImpl implements ChuteiraService {
 
     @Override
     public ChuteiraDTO cadastrar(ChuteiraForm form) {
-        validator.validarCadastro(form);
+        produtoGenericoValidator.validaPrecos(form.getPrecoFornecedor(), form.getPrecoVenda());
         var chuteira = mapper.toModel(form);
         chuteira.setCategoria(Categoria.CALCADOS);
         chuteira.setModalidade(Modalidade.FUTEBOL);
@@ -59,7 +61,7 @@ public class ChuteiraServiceImpl implements ChuteiraService {
 
     @Override
     public ChuteiraDTO atualizar(Long id, ChuteiraUpdateForm form) {
-        var chuteira = validator.verificarExistencia(id);
+        var chuteira = (Chuteira) produtoGenericoValidator.verificarExistencia(id);
         mapper.updateChuteiraFromChuteiraUpdateForm(form, chuteira);
 
         return mapper.toDto(repository.save(chuteira));
@@ -67,7 +69,7 @@ public class ChuteiraServiceImpl implements ChuteiraService {
 
     @Override
     public void excluir(Long id) {
-        var chuteira = validator.verificarExistencia(id);
+        var chuteira = (Chuteira) produtoGenericoValidator.verificarExistencia(id);
         repository.delete(chuteira);
     }
 

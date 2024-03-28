@@ -54,6 +54,7 @@ public class ProdutoGenericoServiceImpl implements ProdutoGenericoService{
         return toDto(produto);
     }
 
+    @Override
     public ProdutoGenericoDTO toDto(ProdutoGenerico entity) {
 
         if ( entity == null ) {
