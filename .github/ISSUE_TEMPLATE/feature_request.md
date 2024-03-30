@@ -2,7 +2,7 @@
 name: Feature request
 about: Sugira uma ideia para este repositório
 title: ''
-labels: ''
+labels: enhancement
 assignees: ''
 
 ---
